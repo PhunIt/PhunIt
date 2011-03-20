@@ -1,27 +1,40 @@
 <?php
 
 class Stub {
-  protected $method;
+
+  protected $methods;
 
   public function stubs($method) {
-    $this->method = new Method();
-    return $this->method;
+    $this->methods[$method] = new Method();
+    return $this->methods[$method];
   }
 
-  public function chuchu() {
-    return $this->method->returns();
+  public function __call($method, $args) {
+    return $this->methods[$method]->call();
   }
+
+//  public function chuchu() {
+//    return $this->methods['chuchu']->call();
+//  }
 
   public function arbol() {
-    return "cocotero";
+    return $this->methods['arbol']->call();
   }
 
 }
 
 class Method {
-  public function returns() {
-    return "blabla";
+
+  protected $value;
+
+  public function returns($value) {
+    $this->value = $value;
   }
+
+  public function call() {
+    return $this->value;
+  }
+
 }
 
 class StubTest extends \PHPUnit_Framework_TestCase {

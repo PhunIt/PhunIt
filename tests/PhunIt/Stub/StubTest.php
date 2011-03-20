@@ -30,13 +30,20 @@ class StubTest extends \PHPUnit_Framework_TestCase {
 
   public function testShouldReturnAMethodWhenStubbing() {
     $stub = new Stub();
-    $this->assertTrue($stub->stubs('chuchu') instanceof Method);
+    $this->assertTrue($stub->stubs("chuchu") instanceof Method);
   }
 
   public function testShouldReturnAConfiguredValue() {
     $stub = new Stub();
-    $stub->stubs('chuchu')->returns("blabla");
+    $stub->stubs("chuchu")->returns("blabla");
     $this->assertEquals("blabla", $stub->chuchu());
+  }
+
+  public function testShouldBeAbleToStubMoreMethods() {
+    $stub = new Stub();
+    $stub->stubs("chuchu")->returns("blabla");
+    $stub->stubs("arbol")->returns("cocotero");
+    $this->assertEquals("cocotero", $stub->arbol());
   }
 
 }

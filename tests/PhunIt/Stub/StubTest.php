@@ -25,4 +25,10 @@ class StubTest extends \PHPUnit_Framework_TestCase {
     $this->assertTrue($stub->stubs('chuchu') instanceof Method);
   }
 
+  public function testShouldReturnAConfiguredValue() {
+    $stub = new Stub();
+    $stub->stubs('chuchu')->returns("blabla");
+    $this->assertEquals("blabla", $stub->chuchu());
+  }
+
 }

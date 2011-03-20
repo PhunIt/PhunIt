@@ -17,9 +17,9 @@ class Stub {
 //    return $this->methods['chuchu']->call();
 //  }
 
-  public function arbol() {
-    return $this->methods['arbol']->call();
-  }
+//  public function arbol() {
+//    return $this->methods['arbol']->call();
+//  }
 
 }
 

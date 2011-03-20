@@ -2,12 +2,18 @@
 
 class StubFactory {
 
+  protected static $stubbedClasses = array();
+
   public static function create($class) {
-    if (class_exists($class)) {
+    if (class_exists($class) && !in_array($class, self::$stubbedClasses)) {
       throw new Exception("Class {$class} already exists");
     }
-    eval("class {$class} {
-      }");
+
+    if (!in_array($class, self::$stubbedClasses)) {
+      eval("class {$class} {\n}");
+      self::$stubbedClasses[] = $class;
+    }
+
     return new $class();
   }
 

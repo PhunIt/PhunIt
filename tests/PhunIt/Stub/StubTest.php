@@ -55,4 +55,10 @@ class StubTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals("cocotero", $stub->arbol());
   }
 
+  public function testShouldThrowExceptionIfMethodIsNotStubbed() {
+    $this->setExpectedException("\Exception");
+    $stub = new Stub();
+    $stub->chuchu();
+  }
+
 }

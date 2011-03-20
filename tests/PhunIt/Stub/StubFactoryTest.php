@@ -3,7 +3,9 @@
 class StubFactory {
 
   public static function create($class) {
-
+    eval("class {$class} {
+      }");
+    return new $class();
   }
 
 }
@@ -15,7 +17,7 @@ class StubFactoryTest extends PHPUnit_Framework_TestCase {
     $stub = StubFactory::create();
   }
 
-  public function testShouldReturnAStubbedInstaceOfTheClass() {
+  public function testShouldReturnAnInstaceOfTheReceivedClass() {
     $stub = StubFactory::create('ChuChu');
     $this->assertTrue($stub instanceof ChuChu);
   }

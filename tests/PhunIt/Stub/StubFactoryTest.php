@@ -3,6 +3,9 @@
 class StubFactory {
 
   public static function create($class) {
+    if (class_exists($class)) {
+      throw new Exception("Class {$class} already exists");
+    }
     eval("class {$class} {
       }");
     return new $class();

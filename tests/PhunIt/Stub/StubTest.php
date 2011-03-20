@@ -13,14 +13,6 @@ class Stub {
     return $this->methods[$method]->call();
   }
 
-//  public function chuchu() {
-//    return $this->methods['chuchu']->call();
-//  }
-
-//  public function arbol() {
-//    return $this->methods['arbol']->call();
-//  }
-
 }
 
 class Method {

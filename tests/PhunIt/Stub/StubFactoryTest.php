@@ -5,16 +5,24 @@ class StubFactory {
   protected static $stubbedClasses = array();
 
   public static function create($class) {
+    self::validateClass($class);
+
+    self::createClassIfNeeded($class);
+
+    return new $class();
+  }
+
+  protected static function validateClass($class) {
     if (class_exists($class) && !in_array($class, self::$stubbedClasses)) {
       throw new Exception("Class {$class} already exists");
     }
+  }
 
+  protected static function createClassIfNeeded($class) {
     if (!in_array($class, self::$stubbedClasses)) {
       eval("class {$class} {\n}");
       self::$stubbedClasses[] = $class;
     }
-
-    return new $class();
   }
 
 }

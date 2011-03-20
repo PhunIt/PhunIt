@@ -64,7 +64,6 @@ class StubFactoryTest extends PHPUnit_Framework_TestCase {
   public function testReturnedInstanceShouldAlsoBeAStub() {
     $stub = StubFactory::create('ChuChu');
     $this->assertTrue($stub instanceof Stubbed);
-    $stub->stub('pepe')->returns('lala');
   }
 
 }

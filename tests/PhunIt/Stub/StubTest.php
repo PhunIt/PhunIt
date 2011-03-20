@@ -6,10 +6,16 @@ class Stub {
     return new Method();
   }
 
+  public function chuchu() {
+    return "blabla";
+  }
+
 }
 
 class Method {
-  
+  public function returns() {
+    
+  }
 }
 
 class StubTest extends \PHPUnit_Framework_TestCase {

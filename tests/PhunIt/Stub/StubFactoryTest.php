@@ -22,4 +22,9 @@ class StubFactoryTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($stub instanceof ChuChu);
   }
 
+  public function testShouldThrowExceptionIfClassAlreadyExists() {
+    $this->setExpectedException('\Exception');
+    StubFactory::create('ArrayObject');
+  }
+
 }

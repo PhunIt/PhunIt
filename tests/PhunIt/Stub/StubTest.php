@@ -10,7 +10,10 @@ class Stub {
   }
 
   public function __call($method, $args) {
-    return $this->methods[$method]->call();
+    if (array_key_exists($method, $this->methods)) {
+      return $this->methods[$method]->call();
+    }
+    throw new \Exception("Method {$method} is not stubbed");
   }
 
 }

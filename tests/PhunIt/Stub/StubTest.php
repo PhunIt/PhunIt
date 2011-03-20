@@ -12,6 +12,10 @@ class Stub {
     return $this->method->returns();
   }
 
+  public function arbol() {
+    return "cocotero";
+  }
+
 }
 
 class Method {

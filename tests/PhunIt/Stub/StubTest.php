@@ -1,20 +1,22 @@
 <?php
 
 class Stub {
+  protected $method;
 
   public function stubs($method) {
-    return new Method();
+    $this->method = new Method();
+    return $this->method;
   }
 
   public function chuchu() {
-    return "blabla";
+    return $this->method->returns();
   }
 
 }
 
 class Method {
   public function returns() {
-    
+    return "blabla";
   }
 }
 

@@ -30,4 +30,10 @@ class StubFactoryTest extends PHPUnit_Framework_TestCase {
     StubFactory::create('ArrayObject');
   }
 
+  public function testShouldReturnAnInstanceIfClassAlreadyCreated() {
+    $stub = StubFactory::create('ChuChu');
+    $AnotherStub = StubFactory::create('ChuChu');
+    $this->assertTrue($AnotherStub instanceof ChuChu);
+  }
+
 }

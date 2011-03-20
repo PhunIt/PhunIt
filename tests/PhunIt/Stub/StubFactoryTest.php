@@ -1,5 +1,8 @@
 <?php
 
+use PhunIt\Stub\Stubbed;
+
+
 class StubFactory {
 
   protected static $stubbedClasses = array();
@@ -20,7 +23,15 @@ class StubFactory {
 
   protected static function createClassIfNeeded($class) {
     if (!in_array($class, self::$stubbedClasses)) {
-      eval("class {$class} {\n}");
+      $classDef = <<<EOF
+
+use PhunIt\Stub\Stub;
+      
+class $class extends Stub {
+}
+
+EOF;
+      eval($classDef);
       self::$stubbedClasses[] = $class;
     }
   }

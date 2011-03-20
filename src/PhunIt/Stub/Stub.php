@@ -2,9 +2,10 @@
 
 namespace PhunIt\Stub;
 
+use PhunIt\Stub\Stubbed;
 use PhunIt\Method\Container;
 
-class Stub {
+class Stub implements Stubbed {
 
   protected $methodContainer;
 

@@ -3,9 +3,13 @@
 class Stub {
 
   public function stubs($method) {
-    
+    return new Method();
   }
 
+}
+
+class Method {
+  
 }
 
 class StubTest extends \PHPUnit_Framework_TestCase {

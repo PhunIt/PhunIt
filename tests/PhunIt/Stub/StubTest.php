@@ -2,22 +2,21 @@
 
 class Stub {
 
-  protected $methods;
+  protected $methodContainer;
+
+  public function __construct() {
+    $this->methodContainer = new MethodContainer();
+  }
 
   public function stubs($method) {
-    $this->methods[$method] = new Method();
-    return $this->methods[$method];
+    return $this->methodContainer->add($method);
   }
 
   public function __call($method, $args) {
-    if (!$this->isMethodStubbed($method)) {
+    if (!$this->methodContainer->has($method)) {
       throw new \Exception("Method {$method} is not stubbed");
     }
-    return $this->methods[$method]->call();
-  }
-
-  protected function isMethodStubbed($method) {
-    return array_key_exists($method, $this->methods);
+    return $this->methodContainer->get($method)->call();
   }
 
 }
@@ -32,6 +31,25 @@ class Method {
 
   public function call() {
     return $this->value;
+  }
+
+}
+
+class MethodContainer {
+
+  protected $methods = array();
+
+  public function add($method) {
+    $this->methods[$method] = new Method();
+    return $this->methods[$method];
+  }
+
+  public function has($method) {
+    return array_key_exists($method, $this->methods);
+  }
+
+  public function get($method) {
+    return $this->methods[$method];
   }
 
 }
